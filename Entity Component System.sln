@@ -5,7 +5,13 @@ VisualStudioVersion = 15.0.28307.705
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Entity Component System", "Entity Component System\Entity Component System.vcxproj", "{CF92F339-3956-4186-8ECB-DEB36519DE0B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ECS", "ECS\ECS.vcxitems", "{A01ED0A1-F1ED-4D67-9D9B-E40EDCE77FA5}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		ECS\ECS.vcxitems*{a01ed0a1-f1ed-4d67-9d9b-e40edce77fa5}*SharedItemsImports = 9
+		ECS\ECS.vcxitems*{cf92f339-3956-4186-8ecb-deb36519de0b}*SharedItemsImports = 4
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86

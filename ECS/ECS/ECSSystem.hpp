@@ -13,14 +13,16 @@ public:
         Optional = 1, 
     };
 
+    BaseECSSystem() {};
     BaseECSSystem(const std::vector<uint32>& In): ComponentTypes(In) {};
     virtual void UpdateComponents(float dt, BaseECSComponent** comp) {};
     inline const std::vector<uint32>& GetComponentTypes() { return ComponentTypes; }
     inline const std::vector<uint32>& GetComponentFlags() { return ComponentFlags; }
 
     bool IsValid();
+
 protected:
-    void AddComponentType(uint32 Type, uint32 Flag = 0) {
+    void AddComponentType(uint32 Type, uint32 Flag=0) {
         ComponentTypes.push_back(Type);
         ComponentFlags.push_back(Flag);
     };
