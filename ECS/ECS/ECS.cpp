@@ -79,22 +79,22 @@ void ECS::UpdateMultiComponentSystem(float dt, uint32 index, const std::vector<u
     compParam.resize(std::max(compParam.size(), compTypes.size()));
     compArrays.resize(std::max(compArrays.size(), compTypes.size()));
 
-    size_t TypeSize = BaseECSComponent::GetTypeSize(compTypes[0]);
-
     // LUT
     for( uint32 i = 0; i < compTypes.size(); i++ ) {
         compArrays[i] = &Components[compTypes[i]];
     }
 
+    // 
     uint32 minSzIndex = FindLCComponent(compTypes, compFlags);
+    size_t TypeSize = BaseECSComponent::GetTypeSize(compTypes[minSzIndex]);
     std::vector<uint8>& arr = *compArrays[minSzIndex];
 
     // 
     for( uint32 i = 0; i < arr.size(); i += TypeSize ) {
         compParam[minSzIndex] = (BaseECSComponent*)&arr[i];
         std::vector<std::pair<uint32, uint32>>& eComp = GetEntityHandle(compParam[minSzIndex]->_Entity);
-        bool bIsValid = true;
 
+        bool bIsValid = true;
         for( uint32 j = 0; j < compTypes.size(); j++ ) {
             if( j == minSzIndex ) { continue; }
 
