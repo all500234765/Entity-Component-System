@@ -16,8 +16,8 @@ public:
     BaseECSSystem() {};
     BaseECSSystem(const std::vector<uint32>& In): ComponentTypes(In) {};
     virtual void UpdateComponents(float dt, BaseECSComponent** comp) {};
-    inline const std::vector<uint32>& GetComponentTypes() { return ComponentTypes; }
-    inline const std::vector<uint32>& GetComponentFlags() { return ComponentFlags; }
+    inline const std::vector<uint32>& GetComponentTypes() const { return ComponentTypes; }
+    inline const std::vector<uint32>& GetComponentFlags() const { return ComponentFlags; }
 
     bool IsValid();
 
@@ -41,6 +41,6 @@ public:
 
     bool RemoveSystem(BaseECSSystem* Sys);
 
-    inline size_t size() { return Systems.size(); }
-    inline BaseECSSystem* operator[](uint32 index) {return Systems[index]; }
+    inline size_t size() const { return Systems.size(); }
+    inline BaseECSSystem* operator[](uint32 index) const { return Systems[index]; }
 };

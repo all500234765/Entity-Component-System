@@ -58,7 +58,7 @@ void ECS::AddComponentInternal(std::vector<std::pair<uint32, uint32>>& entity, u
     std::pair<uint32, uint32> Pair;
     Pair.first = compID;
     Pair.second = createfn(Components[compID], handle, comp);
-    entity.push_back({});
+    entity.push_back(Pair);
 }
 
 BaseECSComponent* ECS::GetComponentInternal(std::vector<std::pair<uint32, uint32>>& eComps, std::vector<uint8>& arr, uint32 compID) {
@@ -68,7 +68,7 @@ BaseECSComponent* ECS::GetComponentInternal(std::vector<std::pair<uint32, uint32
         }
     }
 
-    return NULL_HANDLE;
+    return nullptr;
 }
 
 void ECS::UpdateMultiComponentSystem(float dt, uint32 index, const std::vector<uint32>& compTypes, 

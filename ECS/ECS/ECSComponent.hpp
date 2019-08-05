@@ -57,7 +57,7 @@ template<typename T>
 const uint32 ECSComponent<T>::_ID(BaseECSComponent::_RegisterComponentType(ECSComponentCreate<T>, ECSComponentFree<T>, sizeof(T)));
 
 template<typename T>
-const uint32 ECSComponent<T>::_SIZE(sizeof(T));
+const size_t ECSComponent<T>::_SIZE(sizeof(T));
 
 template<typename T>
 const ECSComponentCreateFunc ECSComponent<T>::_CREATE(ECSComponentCreate<T>);
