@@ -9,7 +9,7 @@ typedef unsigned int uint32;
 typedef unsigned char uint8;
 typedef void* EntityHandle;
 
-typedef uint32(*ECSComponentCreateFunc)(std::vector<uint8>& memory, EntityHandle entity, BaseECSComponent* comp);
+typedef size_t(*ECSComponentCreateFunc)(std::vector<uint8>& memory, EntityHandle entity, BaseECSComponent* comp);
 typedef void(*ECSComponentFreeFunc)(BaseECSComponent* comp);
 
 #define NULL_HANDLE nullptr
@@ -39,8 +39,8 @@ struct ECSComponent: public BaseECSComponent {
 };
 
 template<typename Component>
-uint32 ECSComponentCreate(std::vector<uint8>& memory, EntityHandle entity, BaseECSComponent* comp) {
-    uint32 index = memory.size();
+size_t ECSComponentCreate(std::vector<uint8>& memory, EntityHandle entity, BaseECSComponent* comp) {
+    size_t index = memory.size();
     memory.resize(index + Component::_SIZE);
     Component* component = new(&memory[index]) Component(*(Component*)comp);
     component->_Entity = entity;

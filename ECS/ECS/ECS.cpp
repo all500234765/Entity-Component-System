@@ -6,7 +6,7 @@ void ECS::DeleteComponent(uint32 compID, uint32 index) {
     size_t TypeSize = BaseECSComponent::GetTypeSize(compID);
     ECSComponentFreeFunc freefn = BaseECSComponent::GetTypeFree(compID);
 
-    uint32 srcIndex = arr.size() - TypeSize;
+    size_t srcIndex = arr.size() - TypeSize;
     BaseECSComponent* srcComp = (BaseECSComponent*)&arr[srcIndex];
     BaseECSComponent* destComp = (BaseECSComponent*)&arr[index];
     
@@ -34,14 +34,14 @@ void ECS::DeleteComponent(uint32 compID, uint32 index) {
 
 bool ECS::RemoveComponentInternal(EntityHandle handle, uint32 compID) {
     std::vector<std::pair<uint32, uint32>>& eComps = GetEntityHandle(handle);
-    for( uint32 i = 0; i < eComps.size(); i++ ) {
+    for( size_t i = 0; i < eComps.size(); i++ ) {
         if( compID == eComps[i].first ) {
             // Delete component
             DeleteComponent(eComps[i].first, eComps[i].second);
             
             // Remove it from vector
-            uint32 srcIndex = eComps.size() - 1;
-            uint32 destIndex = i;
+            size_t srcIndex = eComps.size() - 1;
+            size_t destIndex = i;
 
             eComps[destIndex] = eComps[srcIndex];
             eComps.pop_back();
